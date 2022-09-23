@@ -1,0 +1,78 @@
+
+package main;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+
+public class Venda {
+    
+    private String nomeCliente;
+    private LocalDate dataVenda;
+    private String tipoVenda;
+    private float valorContaVista;
+    private double valorContaPrazo;
+
+    public Venda(String nomeCliente, LocalDate dataVenda, String tipoVenda, float valorContaVista, double valorContaPrazo) {
+        this.nomeCliente = nomeCliente;
+        this.dataVenda = dataVenda;
+        this.tipoVenda = tipoVenda;
+        this.valorContaVista = valorContaVista;
+        this.valorContaPrazo = valorContaPrazo;
+    }
+
+ 
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getDataVenda() {
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataVendaTxT = this.dataVenda.format(formatador);
+        
+        return dataVendaTxT;
+    }
+
+    public void setDataVenda(LocalDate dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+    public String getTipoVenda() {
+        return tipoVenda;
+    }
+
+    public void setTipoVenda(String tipoVenda) {
+        this.tipoVenda = tipoVenda;
+    }
+
+    public float getValorContaVista(int desconto) {
+       float total = valorContaVista*desconto/100;
+        this.valorContaVista = valorContaVista - total;
+        
+        return valorContaVista;
+    }
+
+    public void setValorContaVista(float valorContaVista) {
+        this.valorContaVista = valorContaVista;
+    }
+
+    private double getValorContaPrazo() {
+        this.valorContaPrazo = valorContaPrazo*0.0025;
+       return valorContaPrazo;
+    }
+
+    public void setValorContaPrazo(double valorContaPrazo) {
+        this.valorContaPrazo = valorContaPrazo;
+    }
+
+    @Override
+    public String toString() {
+        return "Venda{" + "nomeCliente=" + nomeCliente + ", dataVenda=" + dataVenda + ", tipoVenda=" + tipoVenda + ", valorContaVista=" + valorContaVista + ", valorContaPrazo=" + valorContaPrazo + '}';
+    }
+
+}
