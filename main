@@ -1,0 +1,57 @@
+
+package main;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+
+
+public class Main {
+     public static void main(String[] args) {
+        String nome = JOptionPane.showInputDialog("Nome:");
+        
+        String dataVendaTxt = 
+                JOptionPane.showInputDialog("Data da Venda (dd/mm/aaaa):");
+        DateTimeFormatter formatador = 
+                DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        LocalDate dataVenda = 
+                LocalDate.parse(dataVendaTxt,formatador);
+        
+        String tipoVenda = JOptionPane.showInputDialog("À vista (V) ou Á prazo (P)");
+        
+     switch (tipoVenda)
+     {
+         
+         case "Vista" : float valorContaVista = Float.parseFloat(JOptionPane.showInputDialog("Qual o Valor total da conta? "));
+     
+          int desconto = Integer.parseInt(JOptionPane.showInputDialog("Qual a porcentagem do desconto (até 10%)"));
+          Venda venda = new Venda(nome, dataVenda, tipoVenda,valorContaVista,0);
+          
+          venda.getValorContaVista(desconto);
+          JOptionPane.showMessageDialog(null, venda.toString());
+          break;
+      
+     
+         case "Prazo" : float valorContaPrazo = Float.parseFloat(JOptionPane.showInputDialog("Qual o Valor total da conta? "));
+        
+         Venda venda1 = new Venda(nome,dataVenda,tipoVenda,0,valorContaPrazo);
+        
+        
+        
+        
+        
+        JOptionPane.showMessageDialog(null, venda1.toString());
+            break;
+     }
+    
+     LocalDate dataSuperior = LocalDate.of(2015, 1, 1);
+
+      
+
+JOptionPane.showMessageDialog(null, "Compra antes do dia 01/01/2015? : "+dataSuperior.isBefore(dataVenda));
+
+     
+     }
+        
+        
+}
