@@ -63,6 +63,7 @@ public class Venda {
 
     private double getValorContaPrazo() {
         this.valorContaPrazo = valorContaPrazo*0.0025;
+        this.valorContaPrazo = valorContaPrazo + this.valorContaPrazo;
        return valorContaPrazo;
     }
 
